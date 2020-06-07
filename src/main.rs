@@ -41,8 +41,10 @@ fn main() {
 
                 finall.sort_by(|a, b| a.1.partial_cmp(&b.1).unwrap());
 
+                let all_paths: Vec<String> = finall.into_iter().map(|i| i.0).collect();
+
                 println!("dub_signatures {:?}", dub_signatures);
-                println!("finall {:?}", finall);
+                println!("finall {:?}", all_paths);
             }
             None => (),
         },
