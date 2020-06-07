@@ -9,7 +9,7 @@ fn main() {
             Some(root) => {
                 println!("{}", root);
 
-                let res = walking::walking(root).unwrap();
+                let res = walking::walking("/home/yapie/Desktop").unwrap();
                 let x: Vec<(String, String)> = res.iter().fold(Vec::new(), |mut acc, val| {
                     let y: Vec<(String, String)> = res
                         .clone()
@@ -28,7 +28,7 @@ fn main() {
                     acc
                 });
                 let dub_signatures: Vec<String> = x.into_iter().map(|x| x.1).collect();
-                let finall: Vec<(String, String)> = res
+                let mut finall: Vec<(String, String)> = res
                     .into_iter()
                     .filter(|i| {
                         let xx = dub_signatures.clone().into_iter().find(|x| x == &i.1);
@@ -38,6 +38,9 @@ fn main() {
                         }
                     })
                     .collect();
+
+                finall.sort_by(|a, b| a.1.partial_cmp(&b.1).unwrap());
+
                 println!("dub_signatures {:?}", dub_signatures);
                 println!("finall {:?}", finall);
             }
